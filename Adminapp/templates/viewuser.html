@@ -1,0 +1,100 @@
+{% extends 'venueadmin.html' %}
+{% block content %}
+
+<style>
+  
+    .table{
+              border-collapse:collapse;
+              width: 99%;
+              height: 100%;
+              padding: 30px;
+              margin-top: 30px;
+              border-radius: 13px;
+              text-align: center;
+              vertical-align: middle;
+              margin-left: -15px;
+              
+          }
+          th{
+              background-color: rgb(3, 4, 3);
+              color: white;
+              border: 1px solid rgb(190, 190, 190);
+              height: 60px;
+              width: 100px;
+              letter-spacing: 1px;
+              text-align: center;
+              
+          }
+          td{
+              height: 150px;
+              width: 3px;
+              font-size: 14px;
+              font-family: arial;
+              
+          }
+    .btn1{
+              border-radius: 13px;
+              width: 80px;
+              height: 40px;
+              background-color: rgb(238, 212, 229);
+              border-color:  white;
+              cursor: pointer;
+              margin-right: 15px;
+          }
+  
+          
+  
+          .btn1:hover{
+              background-color: rgb(216, 132, 205);
+          }
+  
+  </style>
+  </head>
+  <body>
+  
+  
+  <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body" style="width: 900px; ">
+          <h4 class="card-title">VIEW USER DETAILS</h4>
+          
+          <div class="table-responsive" >
+            <table class="table table-bordered" style="width: 200px;">
+              <thead >
+                <tr>
+                 
+                  <th>USER NAME&ensp;</th>
+                  <TH>PASSWORD&ensp;</TH>
+                  <TH>EMAIL&ensp;</TH>
+                  <th>CONTACT NUMBER&ensp;</th>
+                  
+            
+                </tr>
+              </thead>
+              {% for i in data %}
+              <tbody>
+                  <tr>
+                      
+                      <td>{{ i.username }}</td>
+                      <td>{{ i.password }}</td>
+                      <td>{{ i.email }}</td>
+                      <td>{{ i.phone }}</td>
+                  </tr>
+                  
+                  
+                
+                
+                
+                
+               
+                
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+{% endblock %}  

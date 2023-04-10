@@ -1,0 +1,103 @@
+{% extends 'venueadmin.html' %}
+{% block content %}
+<style>
+  
+  .table{
+            border-collapse:collapse;
+            width: 99%;
+            height: 100%;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 13px;
+            text-align: center;
+            vertical-align: middle;
+            margin-left: -15px;
+            
+        }
+        th{
+            background-color: rgb(3, 4, 3);
+            color: white;
+            border: 1px solid rgb(190, 190, 190);
+            height: 60px;
+            width: 100px;
+            letter-spacing: 1px;
+            text-align: center;
+            
+        }
+        td{
+            height: 150px;
+            width: 3px;
+            font-size: 14px;
+            font-family: arial;
+            
+        }
+  .btn1{
+            border-radius: 13px;
+            width: 80px;
+            height: 40px;
+            background-color: rgb(238, 212, 229);
+            border-color:  white;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        
+
+        .btn1:hover{
+            background-color: rgb(216, 132, 205);
+        }
+
+</style>
+</head>
+<body>
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body" style="width: 900px; ">
+        <h4 class="card-title">VIEW SERVICE DETAILS</h4>
+        
+        <div class="table-responsive" >
+          <table class="table table-bordered" style="width: 200px;">
+            <thead >
+              <tr>
+               
+                <th>SERVICE NAME&ensp;</th>
+                <TH>SERVICE COST&ensp;</TH>
+                <TH>SERVICE IMAGE&ensp;</TH>
+                <th>DELETE&ensp;</th>
+                <th>edit &ensp;</th>&ensp;
+          
+              </tr>
+            </thead>
+            {% for i in data %}
+            <tbody>
+                <tr>
+                    
+                    <td>{{ i.sname }}</td>
+                    <td>{{ i.cost }}</td>
+        
+                    <td><img src="{{ i.service_image.url }}" width="80px"  height="90px"></td>
+                    
+                    <td ><a href="{% url 'deleteservice' id=i.id %}"><button type="button" class="btn1">DELETE</button></a></td>
+
+                     <td ><a href="{% url 'editservice' id=i.id %}"><button type="button" class="btn1">edit</button></a></td>
+                </tr>
+                
+                
+              
+              
+              
+              
+             
+              
+            </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+{% endblock %}  

@@ -1,0 +1,127 @@
+{% extends 'home.html' %}
+{% block content %}
+{% load static %}
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2 style="color: #dfa974;">OUR VENUES</h2>
+                        <div class="bt-option">
+                            <a href="{% url 'home' %}">Home</a>
+                            <span>venue</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Room Details Section Begin -->
+    <section class="room-details-section spad">
+        <div class="container">
+            <div class="rd-title">
+                <a href="{% url 'userlogin' %}"><h3>{{ message }}</h3></a>
+            </div>
+            
+            {% for i in data %}
+            <form action="{% url 'bookdata' id=i.id %}" method="post">
+                {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="room-details-item">
+                       
+                        <img src="{{ i.venue_img.url }}" style="height: 690px; width: 600px;" alt="">
+                    </div>
+                   
+                </div>
+                <div class="col-lg-5">
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h2>{{ i.venue_name }}</h2>
+                        </div>
+                        <h3 style="padding-top: 10px;">Rs.{{i.price}}</h3>
+                        <input type="hidden" value="{{i.venue_name}}" name="venue">
+                        <input type="hidden" value="{{i.price}}" name="venue_price">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="padding-top:20px;">{{i.description}}</td>
+                                </tr>
+                              
+                                <tr>
+                                    <td style="padding-top: 20px;;">Location : {{i.address}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding-top: 20px;;">Contact : {{i.phone}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding-top: 20px;;">Choose a date and time <input type="datetime-local" name="date_time"></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding-top: 20px;">Please tell us about the purpose of your booking (eg: Marriage,Birthday parties,Meetings, etc) <br>
+                                    <input style="margin-top: 15px;" type="text" name="purpose"></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding-top: 20px;">Select Service <br>
+                                        {% for i in service %}
+                                        <div>
+                                            <input type="hidden" name="venueid" value="{{ i.id }}">
+                                            <input type="hidden" value="{{i.cost}}" name="servicecost"> 
+                                            <input type="checkbox" id="scales" name="scales" value="{{i.cost}}">
+                                            <label for="scales">{{i.sname}} - ₹ {{i.cost}}</label>
+                                            <input type="hidden" name="service" id="servicename" value="{{i.sname}}">
+                                        </div>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        
+                        <div class="rd-title">
+                           
+                                <input type="submit" style="display: inline-block;
+                                color: #ffffff;
+                                font-size: 13px;
+                                text-transform: uppercase;
+                                font-weight: 700;
+                                background: #dfa974;
+                                border-color: #dfa974;
+                                padding: 14px 28px 13px; margin-top: 15px;" value="Book Now">
+                         
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            </form>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Room Details Section End -->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#scales').click(function(){
+                var text="";
+                $('#scales=checked').each(function(){
+                    text+=$(this).val()+',';
+    
+                });
+                text=text.substring(0,text.length-1);
+                $('#servicename').val(text);
+    
+            });
+        });
+    </script>
+    
+
+{% endblock %}

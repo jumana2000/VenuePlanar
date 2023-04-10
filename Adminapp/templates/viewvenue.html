@@ -1,0 +1,128 @@
+{% extends 'venueadmin.html' %}
+{% block content %}
+<style>
+  div.scrollmenu {
+    background-color: #fdfcfc;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+  
+  div.scrollmenu a:hover {
+    background-color: #777;
+  }
+  .table{
+            border-collapse:collapse;
+            width: 95%;
+            height: 100%;
+            padding: 30px;
+            margin-top: 60px;
+            border-radius: 13px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        th{
+            background-color: rgb(3, 4, 3);
+            color: white;
+            border: 1px solid rgb(190, 190, 190);
+            height: 50px;
+            letter-spacing: 1px;
+            margin-right: 2PX;
+            
+        }
+        td{
+            height: 150px;
+            width: 3px;
+            font-size: 14px;
+            font-family: arial;
+            
+        }
+
+        
+  .btn1{
+            border-radius: 13px;
+            width: 80px;
+            height: 40px;
+            background-color: rgb(238, 212, 229);
+            border-color:  white;
+            cursor: pointer;
+        }
+
+        
+
+        .btn1:hover{
+            background-color: rgb(216, 132, 205);
+        }
+
+</style>
+</head>
+<body>
+
+<div class="scrollmenu">
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body" style="width: 900px; ">
+        <h4 class="card-title">VIEW VENUE DETAILS</h4>
+        
+        <div class="table-responsive" >
+          <table class="table table-bordered" style="width: 200px;">
+            <thead >
+              <tr>
+               
+                <th>VENUE NAME</th>
+                <TH>ADDRESS</TH>
+                <th align="center">MANAGER</th>
+                <th>DESCRIPTION</th> 
+                <th>PRICE</th>
+                <TH>CONTACT NUMBER</TH>
+                <TH>EMAIL ID</TH>
+                <TH>VENUE IMAGE</TH>
+                <th>DELETE</th>
+                
+                <th>edit</th>
+          
+              </tr>
+            </thead>
+            {% for i in data %}
+            <tbody>
+                <tr>
+                    
+                    <td>{{ i.venue_name }}</td>
+                    <td>{{ i.address }}</td>
+                    <td>{{ i.manager }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.price }}</td>
+                    <td>{{ i.phone }}</td>
+                    <td>{{ i.email }}</td>
+        
+                    <td><img src="{{ i.venue_img.url }}" width="80px"  height="90px"></td>
+                    
+                    <td ><a href="{% url 'delete' id=i.id %}"><button type="button" class="btn1">DELETE</button></a></td>
+
+                     <td ><a href="{% url 'edit' id=i.id %}"><button type="button" class="btn1">edit</button></a></td>
+                </tr>
+                
+                
+              
+              
+              
+              
+             
+              
+            </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+{% endblock %}  

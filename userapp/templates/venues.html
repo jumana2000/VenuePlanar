@@ -1,0 +1,60 @@
+{% extends 'home.html' %}
+{% block content %}
+{% load static %}
+
+
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>VENUES</h2>
+                        <div class="bt-option">
+                            <a href="{% url 'home' %}">Home</a>
+                            <span>Venue Grid</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section blog-page spad">
+        <div class="container">
+            
+            <div class="row">
+                {% for i in data %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="{{ i.venue_img.url }}">
+                        <div class="bi-text">
+                            <span class="b-tag">{{ i.venue_name }}</span>
+                            <h4><a href="{% url 'details' id=i.id %}">More Details</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+              
+                
+                
+                
+                
+                <div class="col-lg-12">
+                    <div class="load-more">
+                        <a href="#" class="primary-btn">Load More</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- Footer Section Begin -->
+  
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+{% block content %}
+{% load static %}
+
+
+
+    <!-- Header Section Begin -->
+    
+
+    <!-- Contact Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-text">
+                        <h5 style="margin-right: 60px; font-size: 15px;">SEND US A MESSAGE</h5><br>
+                        <h2 style="font-size: 30px;"><b>LET'S GET STARTED</b></h2>
+                       <br><br>
+                        <table >
+                            <tbody style="font-family: 'verdana';">
+                                <tr>
+                                    <td class="c-o">Address:</td>
+                                    <td>345 Hill Ave. Nashville, TN 37210</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Phone:</td>
+                                    <td>(12) 345 67890</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Email:</td>
+                                    <td>info.venue@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Fax:</td>
+                                    <td>+(12) 345 67890</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br><br>
+                <div class="col-lg-7 offset-lg-1">
+                    <form action="{% url 'contactdata' %}" method="POST" enctype="multipart/form-data" class="contact-form" >
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="name"></label>
+                                <input type="text" placeholder="Your Name" id="name" name="name">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="c_email"></label>
+                                <input type="text" placeholder="Your Email" id="c_email" name="email">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="message"></label>
+                                <textarea placeholder="Your Message" id="message" name="message"></textarea>
+                                <button type="submit">Submit Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+   
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'venueadmin.html' %}
+{% block content %}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body" style="background-color: rgb(227, 234, 247);">
+        <h1 class="card-title">ADD VENUES </h1><BR><BR>
+       
+        <form action="{% url 'getdata' %}" method="POST" enctype="multipart/form-data" class="forms-sample" style="width: 650px; height: auto;">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="vname">VENUE NAME</label><BR><BR>
+            <input type="text" class="form-control" id="vname" name="vname" placeholder="Name">
+          </div>
+
+          <div class="form-group">
+            <label for="address">ADDRESS</label><BR><BR>
+            <textarea id="desc" name="address" class="form-control" rows="4" cols="50"></textarea>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="manager">MANAGER</label><BR><BR>
+              <select name="manager" id="">
+                {% for i in manager %}
+                  <option value="{{i.name}}">{{i.name}}</option>
+                {% endfor %}
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="vdesc">DESCRIPTION</label><BR><BR>
+            <textarea id="vdesc" name="vdesc" id="vdesc" class="form-control" rows="4" cols="50"></textarea>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="price">PRICE</label><BR><BR>
+            <input type="number" class="form-control" id="price" name="price" placeholder="VenueName">
+          </div>
+      
+          <div class="form-group">
+            <label for="phone">CONTACT NUMBER</label><BR><BR>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Contact Number">
+          </div>
+
+          <div class="form-group">
+            <label for="email"> EMAIL ID </label><BR><BR>
+            <input type="email" class="form-control" id="email" name="email" placeholder="email" >
+          </div>
+       
+         
+          <div class="form-group">
+            <label for="image">FILE INPUT</label><BR><BR>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image" name="image" >
+                <label class="custom-file-label" for="image">Choose file</label>
+              </div>
+            </div>
+          </div>
+         
+          <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}  

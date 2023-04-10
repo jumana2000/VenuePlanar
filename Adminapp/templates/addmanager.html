@@ -1,0 +1,69 @@
+{% extends 'venueadmin.html' %}
+{% block content %}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body" style="background-color: rgb(227, 234, 247);">
+        <h1 class="card-title">ADD MANAGER </h1><BR><BR>
+       
+        <form action="{% url 'managerdata' %}" method="POST" enctype="multipart/form-data" class="forms-sample" style="width: 650px; height: auto;">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="mname">Manager Name</label><BR><BR>
+            <input type="text" class="form-control" id="mname" name="name" placeholder="Name">
+          </div>
+
+          <div class="form-group">
+            <label for="maddr">Address</label><BR><BR>
+            <textarea id="desc" name="address" class="form-control" rows="4" cols="50"></textarea>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="mphone">Contact No</label><BR><BR>
+            <input type="text" class="form-control" id="mphone" name="phone" placeholder="Contact Number">
+          </div>
+
+          <div class="form-group">
+            <label for="mvname">VENUE NAME</label><BR><BR>
+              <select name="venuename" id="">
+              {% for i in data %}
+              <option value="{{i.venue_name}}">{{i.venue_name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="memail"> EMAIL ID </label><BR><BR>
+            <input type="email" class="form-control" id="email" name="email" placeholder="email" >
+          </div>
+
+          <div class="form-group">
+            <label for="mpwd">PASSWORD</label><BR><BR>
+            <input type="password" class="form-control" id="mpwd" name="password" placeholder="MANAGER">
+          </div>
+
+          
+         
+          <div class="form-group">
+            <label for="mimage">MANAGER IMAGE</label><BR><BR>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="mimage" name="mimage" >
+                <label class="custom-file-label" for="mimage">Choose file</label>
+              </div>
+            </div>
+          </div>
+         
+          <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}  

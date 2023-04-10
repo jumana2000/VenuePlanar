@@ -1,0 +1,69 @@
+{% extends 'venueadmin.html' %}
+{% block content %}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body" style="background-color: rgb(227, 234, 247);">
+        <h1 class="card-title">EDIT </h1><BR><BR>
+        {% for i in data %}
+        <form action="{% url 'editupdate' id=i.id %}" method="POST" enctype="multipart/form-data" class="forms-sample" style="width: 650px; height: 1850px;">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="fname">VENUE</label><BR><BR>
+            <input type="text" class="form-control" id="fname" name="vname" placeholder="Name" value="{{ i.venue_name }}">
+          </div>
+
+          <div class="form-group">
+            <label for="address">ADDRESS</label><BR><BR>
+            <textarea id="desc" name="address" class="form-control" rows="4" cols="50">{{ i.address }}</textarea>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="manager">MANAGER</label><BR><BR>
+            <input type="text" class="form-control" id="manager" name="manager" placeholder="MANAGER" value="{{ i.manager }}">
+          </div>
+
+          <div class="form-group">
+            <label for="vdesc">DESCRIPTION</label><BR><BR>
+            <textarea id="vdesc" name="vdesc" class="form-control" rows="4" cols="50">{{i.description}}</textarea>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="price">PRICE</label><BR><BR>
+            <input type="number" class="form-control" id="price" name="price" placeholder="VenueName" value="{{ i.price }}">
+          </div>
+      
+          <div class="form-group">
+            <label for="phone">CONTACT NUMBER</label><BR><BR>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Contact Number" value="{{ i.phone }}">
+          </div>
+
+          <div class="form-group">
+            <label for="email"> EMAIL ID </label><BR><BR>
+            <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{ i.email }}">
+          </div>
+          
+          
+         
+          <div class="form-group">
+            <label for="image">FILE INPUT</label><BR><BR>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image" name="image" value="{{ i.user_name }}">
+                <label class="custom-file-label" for="image">Choose file</label>
+              </div>
+            </div>
+          </div>
+         
+          <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}  

@@ -1,0 +1,119 @@
+{% extends 'home.html' %}
+{% block content %}
+{% load static %}
+
+{% if data %}
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2 style="color: #dfa974;">Confirm Your Booking</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <section class="room-details-section spad">
+        <div class="container">
+            <div class="row">
+                {% for i in data %}
+                <div class="col-lg-6">
+                    <form action="{% url 'confirmorder' bookid=i.id %}" method="POST" enctype="multipart/form-data" class="contact-form" >
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="name"></label>
+                                <input type="text" value="{{request.session.username}}" name="username">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="name"></label>
+                                <input type="text" value="{{request.session.email}}" name="email">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="c_email"></label>
+                                <input type="text" value="{{request.session.phone}}" name="phone">
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit">Confirm Now</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                {% endfor %}
+                <div class="col-lg-6">
+                    <div class="card mt-4">
+                        <div class="card-body">
+                          <h5 class="card-title">Booking Details</h5>
+                          <div class="row">
+                            {% for i in data %}
+                            <div class="col-lg-6">
+                                <p class="card-text">Venue : {{i.venueid.venue_name}}</p>
+                                <p class="card-text">Location : {{i.venueid.address}}</p>
+                                <p class="card-text">Price : {{i.venueid.price}}</p>
+                                
+                                <p class="card-text">Services : {{i.service_name}}</p>
+                                <p class="card-text">Service cost : {{i.selected_service}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="card-text">Total Cost : Rs {{i.total}}</h5>
+                            </div>
+                          
+                            {% endfor %}
+                            
+                        </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% else %}
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="{% url 'venues' %}"><h2 style="color: #dfa974;">Please Book Your Venue</h2></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if message %}
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2 style="color: #dfa974;">{{message}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if error %}
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2 style="color: #dfa974;">{{error}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
